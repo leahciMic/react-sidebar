@@ -57,7 +57,7 @@ class Sidebar extends React.Component {
 
     this.state = {
       // the detected width of the sidebar in pixels
-      sidebarWidth: 0,
+      sidebarWidth: props.sidebarWidth,
 
       // keep track of touching params
       touchIdentifier: null,
@@ -212,7 +212,13 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const sidebarStyle = {...defaultStyles.sidebar, ...this.props.styles.sidebar};
+    const sidebarStyle = Object.assign(
+      { width: this.state.sidebarWidth },
+      {
+        ...defaultStyles.sidebar,
+        ...this.props.styles.sidebar,
+      }
+    );
     const contentStyle = {...defaultStyles.content, ...this.props.styles.content};
     const overlayStyle = {...defaultStyles.overlay, ...this.props.styles.overlay};
     const useTouch = this.state.dragSupported && this.props.touch;
@@ -384,6 +390,9 @@ Sidebar.propTypes = {
 
   // callback called when the overlay is clicked
   onSetOpen: React.PropTypes.func,
+
+  // optional width of the sidebar
+  sidebarWidth: React.PropTypes.number,
 };
 
 Sidebar.defaultProps = {

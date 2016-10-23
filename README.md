@@ -19,6 +19,9 @@ React Sidebar is a sidebar component for React 0.14+. It offers the following fe
 Change log
 ----------
 
+## 2.3
+ - Add support for specifying a width allowing one to render a docked/open sidebar server side
+
 ## 2.2
  - Move from onTouchTap to onClick for React 15.2 compatibility (@factorize)
  - Fix accessibility issues (@cristian-sima)
@@ -70,6 +73,7 @@ Supported props
 | pullRight | boolean | false | Place the sidebar on the right |
 | shadow | boolean | true | Enable/Disable sidebar shadow |
 | styles | object | [See below](#styles) | Inline styles. These styles are merged with the defaults and applied to the respective elements. |
+| width | number | undefined | Optional width of the sidebar in pixels |
 
 Installation
 ------------

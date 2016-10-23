@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -82,11 +82,11 @@ var Sidebar = function (_React$Component) {
   function Sidebar(props) {
     _classCallCheck(this, Sidebar);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Sidebar).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 
     _this.state = {
       // the detected width of the sidebar in pixels
-      sidebarWidth: 0,
+      sidebarWidth: props.sidebarWidth,
 
       // keep track of touching params
       touchIdentifier: null,
@@ -258,7 +258,7 @@ var Sidebar = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var sidebarStyle = _extends({}, defaultStyles.sidebar, this.props.styles.sidebar);
+      var sidebarStyle = Object.assign({ width: this.state.sidebarWidth }, _extends({}, defaultStyles.sidebar, this.props.styles.sidebar));
       var contentStyle = _extends({}, defaultStyles.content, this.props.styles.content);
       var overlayStyle = _extends({}, defaultStyles.overlay, this.props.styles.overlay);
       var useTouch = this.state.dragSupported && this.props.touch;
@@ -435,7 +435,10 @@ Sidebar.propTypes = {
   dragToggleDistance: _react2.default.PropTypes.number,
 
   // callback called when the overlay is clicked
-  onSetOpen: _react2.default.PropTypes.func
+  onSetOpen: _react2.default.PropTypes.func,
+
+  // optional width of the sidebar
+  sidebarWidth: _react2.default.PropTypes.number
 };
 
 Sidebar.defaultProps = {

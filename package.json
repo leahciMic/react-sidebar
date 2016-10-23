@@ -1,10 +1,10 @@
 {
   "name": "react-sidebar",
-  "version": "2.2.1",
+  "version": "2.2.3",
   "author": "Paulus Schoutsen <Paulus@PaulusSchoutsen.nl>",
   "description": "A sidebar component for React.",
   "main": "dist-modules/index.js",
-  "jsnest:main": "src/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir dist-modules && webpack --colors --progress -p",
     "dev": "webpack --watch",
